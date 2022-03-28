@@ -1,13 +1,11 @@
 import { useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
+import Header from '../components/Header';
 
 import { register, useAuth, logout } from '../firebase';
-import '../style/Register.css';
 
 const Register = () => {
   const [ loading, setLoading ] = useState(true);
   const currentCustomer = useAuth();
-
 
   const emailRef = useRef();
   const passwordRef = useRef();
@@ -27,7 +25,6 @@ const Register = () => {
 
     try {
       await register(email, pass);
-      console.log(email, pass)
     } catch (err) {
       alert(err.code);
     }
@@ -42,57 +39,39 @@ const Register = () => {
     }
   };
 
+  const data = [{ to:  '/login', text: 'Login' }];
+
 
 
 
   return (
     <div className='wrapper'>
-
-      <header>
-        <ul>
-
-          <li>
-            <Link to='/login'>
-              <button>Login</button>
-            </Link>
-          </li>
-
-        </ul>
-      </header>
-
-      <main className='auth-form'>
-
-        <div>
-          <h1>Register</h1>
-        </div>
-
-        <div>Loged as: { currentCustomer?.email }</div>
+      <Header data={ data } />
 
 
 
+      <form>
+        Loged as: { currentCustomer?.email }
+        <h1>Register</h1>
 
-        <div>
-          <input ref={ emailRef } type='text' placeholder='Enter Email' />
+        <input ref={ emailRef } type='text' placeholder='Enter Email' />
+        <input ref={ passwordRef } type='text' placeholder='Enter Password' />
+        <input ref={ confirmPasswordRef } type='text' placeholder='Confirm Password' />
 
-          <input ref={ passwordRef } type='text' placeholder='Enter Password' />
+        {!currentCustomer && (
+          <button onClick={ handleRegister }>
+            Register
+          </button>
+        )}
 
-          <input ref={ confirmPasswordRef } type='text' placeholder='Confirm Password' />
+        {currentCustomer && (
+          <button onClick={ handleLogout }>
+            logout
+          </button>
+        )}
 
-          {!currentCustomer && (
-            <button onClick={ handleRegister }>
-              Register
-            </button>
-          )}
+      </form>
 
-          {currentCustomer && (
-            <button onClick={ handleLogout }>
-              logout
-            </button>
-          )}
-        </div>
-
-
-      </main>
 
     </div>
   )

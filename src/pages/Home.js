@@ -1,37 +1,29 @@
-import { Link } from 'react-router-dom';
+
 import Header from '../components/Header';
 
-import '../style/Home.css';
 
 const Home = () => {
+  const data = [
+    { to:  '/register', text: 'Register' },
+    { to:  '/login', text: 'Login' },
+  ];
 
-    return (
-        <div className='wrapper'>
+  return (
+    <div className='wrapper'>
 
 
-          {/* <header>
-            <ul>
-              <li>
-                <Link to='register'>
-                  <button>Register</button>
-                </Link>
-              </li>
 
-              <li>
-                <Link to='login'>
-                  <button>Login</button>
-                </Link>
-              </li>
+      <Header data={ data } />  
 
-            </ul>
-          </header>
+      <div>
+        <h1>Welcome to home page of Customer App!</h1>
+      </div>
 
-          <main className='home-main'>
-            <h1>Welcome to Customer website!!!</h1>
-          </main> */}
 
-        </div>
-    )
+      
+
+    </div>
+  )
 }
 
 export default Home;
