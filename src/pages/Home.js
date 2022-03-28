@@ -1,5 +1,5 @@
-import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import Header from '../components/Header';
 
 import '../style/Home.css';
 
@@ -8,7 +8,8 @@ const Home = () => {
     return (
         <div className='wrapper'>
 
-          <header>
+
+          {/* <header>
             <ul>
               <li>
                 <Link to='register'>
@@ -27,7 +28,7 @@ const Home = () => {
 
           <main className='home-main'>
             <h1>Welcome to Customer website!!!</h1>
-          </main>
+          </main> */}
 
         </div>
     )
